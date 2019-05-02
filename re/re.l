@@ -84,25 +84,26 @@ id              [A-Za-z_][A-Za-z_0-9]*
 	}
 	yylex.Error(fmt.Sprintf("undefined %q", name))
 }
-<INITIAL>[ \t]  {
-	if yylex.NoSpace {
-		return 0
+<INITIAL>[ \t\r\n\v\f] {
+	r := yytext[0]
+	switch r {
+	case ' ', '\t':
+		if yylex.NoSpace {
+			return 0
+		}
+	case '\r', '\n', '\v', '\f':
+		if yylex.NoNewline {
+			return 0
+		}
 	}
-	yylval.rng = Range{yytext[0], yytext[0]}
-	return CHAR
-}
-<INITIAL>[\r\n\v\f] {
-	if yylex.NoNewline {
-		return 0
-	}
-	yylval.rng = Range{yytext[0], yytext[0]}
+	yylval.rng = Range{r, r}
 	return CHAR
 }
 
 <LITERAL>\"	BEGIN(INITIAL); return RPAREN
 
 <CHARSET>"]"    BEGIN(INITIAL); return RBRACK
-<CHARSET>({esc}|[^\]\n])-({esc}|[^\]\n]) {
+<CHARSET>({esc}|[^\]])-({esc}|[^\]]) {
 	r1, yytext := unquote(yytext)
 	r2, _ := unquote(yytext[1:])
 	yylval.rng = Range{r1, r2}

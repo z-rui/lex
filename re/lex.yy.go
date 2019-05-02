@@ -102,9 +102,9 @@ yys1:
 	case c == '\t':
 		goto yys5
 	case c == '\n':
-		goto yys6
+		goto yys5
 	case '\v' <= c && c <= '\r':
-		goto yys6
+		goto yys5
 	case '\x0e' <= c && c <= '\x1f':
 		goto yys4
 	case c == ' ':
@@ -112,33 +112,33 @@ yys1:
 	case c == '!':
 		goto yys4
 	case c == '"':
-		goto yys7
+		goto yys6
 	case '#' <= c && c <= '\'':
 		goto yys4
 	case c == '(':
-		goto yys8
+		goto yys7
 	case c == ')':
-		goto yys9
+		goto yys8
 	case c == '*':
-		goto yys10
+		goto yys9
 	case c == '+':
-		goto yys11
+		goto yys10
 	case ',' <= c && c <= '-':
 		goto yys4
 	case c == '.':
-		goto yys12
+		goto yys11
 	case '/' <= c && c <= 'Z':
 		goto yys4
 	case c == '[':
-		goto yys13
+		goto yys12
 	case c == '\\':
-		goto yys14
+		goto yys13
 	case ']' <= c && c <= 'z':
 		goto yys4
 	case c == '{':
-		goto yys15
+		goto yys14
 	case c == '|':
-		goto yys16
+		goto yys15
 	case '}' <= c && c <= '\U0010ffff':
 		goto yys4
 	default:
@@ -152,11 +152,11 @@ yys2:
 	case '\v' <= c && c <= '!':
 		goto yys4
 	case c == '"':
-		goto yys17
+		goto yys16
 	case '#' <= c && c <= '[':
 		goto yys4
 	case c == '\\':
-		goto yys14
+		goto yys13
 	case ']' <= c && c <= '\U0010ffff':
 		goto yys4
 	default:
@@ -166,20 +166,22 @@ yys3:
 	c = yylex.Input()
 	switch {
 	case '\x00' <= c && c <= '\t':
+		goto yys17
+	case c == '\n':
 		goto yys18
 	case '\v' <= c && c <= '[':
-		goto yys18
+		goto yys17
 	case c == '\\':
 		goto yys19
 	case c == ']':
 		goto yys20
 	case '^' <= c && c <= '\U0010ffff':
-		goto yys18
+		goto yys17
 	default:
 		goto yyfinish
 	}
 yys4:
-	yyacc = 16
+	yyacc = 15
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys5:
@@ -187,34 +189,30 @@ yys5:
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys6:
-	yyacc = 11
-	yyleng = len(yylex.Token)
-	goto yyfinish
-yys7:
 	yyacc = 8
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys8:
+yys7:
 	yyacc = 0
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys9:
+yys8:
 	yyacc = 1
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys10:
+yys9:
 	yyacc = 5
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys11:
+yys10:
 	yyacc = 6
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys12:
+yys11:
 	yyacc = 7
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys13:
+yys12:
 	yyacc = 2
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
@@ -224,8 +222,8 @@ yys13:
 	default:
 		goto yyfinish
 	}
-yys14:
-	yyacc = 16
+yys13:
+	yyacc = 15
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -252,8 +250,8 @@ yys14:
 	default:
 		goto yyfinish
 	}
-yys15:
-	yyacc = 16
+yys14:
+	yyacc = 15
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -266,16 +264,16 @@ yys15:
 	default:
 		goto yyfinish
 	}
-yys16:
+yys15:
 	yyacc = 4
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys17:
-	yyacc = 12
+yys16:
+	yyacc = 11
 	yyleng = len(yylex.Token)
 	goto yyfinish
-yys18:
-	yyacc = 16
+yys17:
+	yyacc = 15
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -284,8 +282,16 @@ yys18:
 	default:
 		goto yyfinish
 	}
+yys18:
+	c = yylex.Input()
+	switch {
+	case c == '-':
+		goto yys28
+	default:
+		goto yyfinish
+	}
 yys19:
-	yyacc = 16
+	yyacc = 15
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -317,7 +323,7 @@ yys19:
 		goto yyfinish
 	}
 yys20:
-	yyacc = 13
+	yyacc = 12
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys21:
@@ -325,11 +331,11 @@ yys21:
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys22:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys23:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -339,7 +345,7 @@ yys23:
 		goto yyfinish
 	}
 yys24:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -353,7 +359,7 @@ yys24:
 		goto yyfinish
 	}
 yys25:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -367,7 +373,7 @@ yys25:
 		goto yyfinish
 	}
 yys26:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -399,9 +405,7 @@ yys27:
 yys28:
 	c = yylex.Input()
 	switch {
-	case '\x00' <= c && c <= '\t':
-		goto yys40
-	case '\v' <= c && c <= '[':
+	case '\x00' <= c && c <= '[':
 		goto yys40
 	case c == '\\':
 		goto yys41
@@ -411,7 +415,7 @@ yys28:
 		goto yyfinish
 	}
 yys29:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -421,13 +425,11 @@ yys29:
 		goto yyfinish
 	}
 yys30:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
-	case '\x00' <= c && c <= '\t':
-		goto yys40
-	case '\v' <= c && c <= ',':
+	case '\x00' <= c && c <= ',':
 		goto yys40
 	case c == '-':
 		goto yys42
@@ -441,7 +443,7 @@ yys30:
 		goto yyfinish
 	}
 yys31:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -453,7 +455,7 @@ yys31:
 		goto yyfinish
 	}
 yys32:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -469,7 +471,7 @@ yys32:
 		goto yyfinish
 	}
 yys33:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -485,7 +487,7 @@ yys33:
 		goto yyfinish
 	}
 yys34:
-	yyacc = 15
+	yyacc = 14
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -549,11 +551,11 @@ yys39:
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys40:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	goto yyfinish
 yys41:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -581,13 +583,11 @@ yys41:
 		goto yyfinish
 	}
 yys42:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
-	case '\x00' <= c && c <= '\t':
-		goto yys40
-	case '\v' <= c && c <= '[':
+	case '\x00' <= c && c <= '[':
 		goto yys40
 	case c == '\\':
 		goto yys41
@@ -665,7 +665,7 @@ yys48:
 		goto yyfinish
 	}
 yys49:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -675,7 +675,7 @@ yys49:
 		goto yyfinish
 	}
 yys50:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -689,7 +689,7 @@ yys50:
 		goto yyfinish
 	}
 yys51:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -703,7 +703,7 @@ yys51:
 		goto yyfinish
 	}
 yys52:
-	yyacc = 14
+	yyacc = 13
 	yyleng = len(yylex.Token)
 	c = yylex.Input()
 	switch {
@@ -929,42 +929,42 @@ yyfinish:
 		}
 	case 10:
 		{
-			if yylex.NoSpace {
-				return 0
+			r := yytext[0]
+			switch r {
+			case ' ', '\t':
+				if yylex.NoSpace {
+					return 0
+				}
+			case '\r', '\n', '\v', '\f':
+				if yylex.NoNewline {
+					return 0
+				}
 			}
-			yylval.rng = Range{yytext[0], yytext[0]}
+			yylval.rng = Range{r, r}
 			return CHAR
 		}
 	case 11:
-		{
-			if yylex.NoNewline {
-				return 0
-			}
-			yylval.rng = Range{yytext[0], yytext[0]}
-			return CHAR
-		}
-	case 12:
 		BEGIN(INITIAL)
 		return RPAREN
 
-	case 13:
+	case 12:
 		BEGIN(INITIAL)
 		return RBRACK
 
-	case 14:
+	case 13:
 		{
 			r1, yytext := unquote(yytext)
 			r2, _ := unquote(yytext[1:])
 			yylval.rng = Range{r1, r2}
 			return CHAR
 		}
-	case 15:
+	case 14:
 		{
 			r, _ := unquote(yytext)
 			yylval.rng = Range{r, r}
 			return CHAR
 		}
-	case 16:
+	case 15:
 		{
 			yylval.rng = Range{yytext[0], yytext[0]}
 			return CHAR
