@@ -1,0 +1,13 @@
+/*comments //*//
+	can be*//
+	nested **/
+let
+	type T = {x: int}
+	var x := T{x=0}
+	var s := "\tx\^Ixx\
+		\xyzzy\010"
+in
+	if T.x >= 0 {
+		print(s)
+	}
+end
