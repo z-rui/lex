@@ -6,17 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-
-	"github.com/z-rui/lex"
 )
-
-type yyLex struct {
-	*lex.Scanner
-	Start     int32
-	NoSpace   bool
-	NoNewline bool
-	Defs      map[string]*Frag
-}
 
 func unquote(text []rune) (rune, []rune) {
 	conv := func(i, j int, base int) (rune, []rune) {
@@ -930,15 +920,9 @@ yyfinish:
 	case 10:
 		{
 			r := yytext[0]
-			switch r {
-			case ' ', '\t':
-				if yylex.NoSpace {
-					return 0
-				}
-			case '\r', '\n', '\v', '\f':
-				if yylex.NoNewline {
-					return 0
-				}
+			if yylex.Whitespace&(1<<uint(r)) == 0 {
+				yylex.Back(1)
+				return 0
 			}
 			yylval.rng = Range{r, r}
 			return CHAR
