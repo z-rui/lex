@@ -78,7 +78,7 @@ array    yylex.Printf("ARRAY")
 	yylex.Printf("STRING(%q)", string(strBuf))
 	BEGIN(INITIAL)
 }
-<STRING>\\[nt"] {
+<STRING>\\[nt"\\] {
 	r := yytext[1]
 	switch r {
 		case 'n': r = '\n'
